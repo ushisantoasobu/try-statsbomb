@@ -15,6 +15,7 @@
 		D64D51F62882A70E005E61B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D64D51F42882A70E005E61B1 /* LaunchScreen.storyboard */; };
 		D64D51FE2882A773005E61B1 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64D51FD2882A773005E61B1 /* Event.swift */; };
 		D64D52112882AD4D005E61B1 /* 18236.json in Resources */ = {isa = PBXBuildFile; fileRef = D64D52102882AD4D005E61B1 /* 18236.json */; };
+		D6FB80D52888474900692304 /* PassSonarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80D42888474900692304 /* PassSonarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		D64D51F72882A70E005E61B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D64D51FD2882A773005E61B1 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		D64D52102882AD4D005E61B1 /* 18236.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 18236.json; path = data/events/18236.json; sourceTree = SOURCE_ROOT; };
+		D6FB80D42888474900692304 /* PassSonarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassSonarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				D64D51E92882A70D005E61B1 /* AppDelegate.swift */,
 				D64D51EB2882A70D005E61B1 /* SceneDelegate.swift */,
 				D64D51ED2882A70D005E61B1 /* ViewController.swift */,
+				D6FB80D42888474900692304 /* PassSonarViewController.swift */,
 				D64D51EF2882A70D005E61B1 /* Main.storyboard */,
 				D64D51F22882A70E005E61B1 /* Assets.xcassets */,
 				D64D51F42882A70E005E61B1 /* LaunchScreen.storyboard */,
@@ -149,6 +152,7 @@
 				D64D51EE2882A70D005E61B1 /* ViewController.swift in Sources */,
 				D64D51EA2882A70D005E61B1 /* AppDelegate.swift in Sources */,
 				D64D51EC2882A70D005E61B1 /* SceneDelegate.swift in Sources */,
+				D6FB80D52888474900692304 /* PassSonarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
