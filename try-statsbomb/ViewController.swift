@@ -7,11 +7,59 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
+
+    enum Item: Int, CaseIterable {
+        case passSonar
+
+        var title: String {
+            switch self {
+            case .passSonar:
+                return "パスソナーもどき"
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        Item.allCases.count
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = Item(rawValue: indexPath.row)
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        cell.textLabel?.text = item?.title
+        return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+
+        let item = Item(rawValue: indexPath.row)!
+
+        switch item {
+        case .passSonar:
+            let vc = PassSonarViewController()
+            present(vc, animated: true)
+        }
+    }
+}
+
+class PassSonarViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.backgroundColor = .white
+    }
+
+    func setup() {
 
         let manager = PassRecordManager()
 
@@ -68,6 +116,7 @@ class ViewController: UIViewController {
         barcaPlayerList.enumerated().forEach { aaa in
             let some = PassSonarView()
             let size: CGFloat = 500
+            print("@@@@@ size: \(view.frame.size)")
             let point = try! calclator.execute(formation: .f4123, index: aaa.offset, size: view.frame.size)
             some.frame = .init(
                 x: point.x - size * 0.5,
@@ -79,6 +128,12 @@ class ViewController: UIViewController {
             some.name = aaa.element.key.name
             view.addSubview(some)
         }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        setup()
     }
 }
 
