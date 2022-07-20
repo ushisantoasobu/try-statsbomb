@@ -38,7 +38,6 @@ class ViewController: UIViewController {
             print(error)
         }
 
-
         let barca_1 = manager.passes.filter { $0.key.name.contains("Víctor") }.first!
         let barca_2 = manager.passes.filter { $0.key.name.contains("Gerard") }.first!
         let barca_3 = manager.passes.filter { $0.key.name.contains("Puyol") }.first!
@@ -115,7 +114,9 @@ class PassSonarView: UIView {
         )
         nameLabel.sizeToFit()
 
-        passes.forEach { pass in
+        passes
+            .filter { $0.type == nil }
+            .forEach { pass in
             let angle = pass.angle
 //            print(angle)
 //            let length: Double = 100 // 一旦固定
