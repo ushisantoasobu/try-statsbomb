@@ -12,6 +12,7 @@ class ViewController: UITableViewController {
     enum Item: Int, CaseIterable {
         case passSonar
         case passMap
+        case playground
 
         var title: String {
             switch self {
@@ -19,6 +20,8 @@ class ViewController: UITableViewController {
                 return "パスソナーもどき"
             case .passMap:
                 return "パスマップもどき"
+            case .playground:
+                return "Playground"
             }
         }
     }
@@ -72,6 +75,9 @@ class ViewController: UITableViewController {
             present(vc, animated: true)
         case .passMap:
             let vc = PassMapViewController()
+            present(vc, animated: true)
+        case .playground:
+            let vc = PlaygroundViewController()
             present(vc, animated: true)
         }
     }

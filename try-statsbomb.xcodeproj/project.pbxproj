@@ -21,6 +21,9 @@
 		D6FB80E1288AE80000692304 /* data in Resources */ = {isa = PBXBuildFile; fileRef = D6FB80E0288AE80000692304 /* data */; };
 		D6FB80E4288AE87D00692304 /* Lineup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80E3288AE87D00692304 /* Lineup.swift */; };
 		D6FB80E7288AEE7500692304 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80E6288AEE7500692304 /* Game.swift */; };
+		D6FB80EA288AEFDF00692304 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80E9288AEFDF00692304 /* PlaygroundViewController.swift */; };
+		D6FB80EC288AF08200692304 /* PositionToViewConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80EB288AF08200692304 /* PositionToViewConverter.swift */; };
+		D6FB80EE288AF39800692304 /* BasicPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80ED288AF39800692304 /* BasicPlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		D6FB80E0288AE80000692304 /* data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data; sourceTree = SOURCE_ROOT; };
 		D6FB80E3288AE87D00692304 /* Lineup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lineup.swift; sourceTree = "<group>"; };
 		D6FB80E6288AEE7500692304 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		D6FB80E9288AEFDF00692304 /* PlaygroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundViewController.swift; sourceTree = "<group>"; };
+		D6FB80EB288AF08200692304 /* PositionToViewConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionToViewConverter.swift; sourceTree = "<group>"; };
+		D6FB80ED288AF39800692304 /* BasicPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,19 +78,22 @@
 		D64D51E82882A70D005E61B1 /* try-statsbomb */ = {
 			isa = PBXGroup;
 			children = (
-				D6FB80E2288AE86000692304 /* model */,
-				D6FB80E0288AE80000692304 /* data */,
 				D64D51E92882A70D005E61B1 /* AppDelegate.swift */,
 				D64D51F22882A70E005E61B1 /* Assets.xcassets */,
 				D6FB80D82888485600692304 /* Common.swift */,
+				D6FB80E0288AE80000692304 /* data */,
+				D6FB80DC288AE5A700692304 /* DataFetcher.swift */,
 				D64D51F72882A70E005E61B1 /* Info.plist */,
 				D64D51F42882A70E005E61B1 /* LaunchScreen.storyboard */,
 				D64D51EF2882A70D005E61B1 /* Main.storyboard */,
+				D6FB80E2288AE86000692304 /* model */,
 				D6FB80D6288847DF00692304 /* PassMapViewController.swift */,
 				D6FB80D42888474900692304 /* PassSonarViewController.swift */,
+				D6FB80E9288AEFDF00692304 /* PlaygroundViewController.swift */,
 				D64D51EB2882A70D005E61B1 /* SceneDelegate.swift */,
+				D6FB80E8288AEF8300692304 /* view */,
 				D64D51ED2882A70D005E61B1 /* ViewController.swift */,
-				D6FB80DC288AE5A700692304 /* DataFetcher.swift */,
+				D6FB80EB288AF08200692304 /* PositionToViewConverter.swift */,
 			);
 			path = "try-statsbomb";
 			sourceTree = "<group>";
@@ -97,6 +106,14 @@
 				D6FB80E3288AE87D00692304 /* Lineup.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		D6FB80E8288AEF8300692304 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				D6FB80ED288AF39800692304 /* BasicPlayerView.swift */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,10 +190,13 @@
 			files = (
 				D64D51FE2882A773005E61B1 /* Event.swift in Sources */,
 				D6FB80E7288AEE7500692304 /* Game.swift in Sources */,
+				D6FB80EA288AEFDF00692304 /* PlaygroundViewController.swift in Sources */,
 				D64D51EE2882A70D005E61B1 /* ViewController.swift in Sources */,
 				D6FB80D7288847DF00692304 /* PassMapViewController.swift in Sources */,
 				D64D51EA2882A70D005E61B1 /* AppDelegate.swift in Sources */,
 				D64D51EC2882A70D005E61B1 /* SceneDelegate.swift in Sources */,
+				D6FB80EE288AF39800692304 /* BasicPlayerView.swift in Sources */,
+				D6FB80EC288AF08200692304 /* PositionToViewConverter.swift in Sources */,
 				D6FB80D52888474900692304 /* PassSonarViewController.swift in Sources */,
 				D6FB80E4288AE87D00692304 /* Lineup.swift in Sources */,
 				D6FB80D92888485600692304 /* Common.swift in Sources */,
