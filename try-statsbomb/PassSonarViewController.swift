@@ -20,7 +20,7 @@ class PassSonarViewController: UIViewController {
 
         let manager = PassRecordManager()
 
-        guard let jsonFilePath = Bundle.main.url(forResource: "18236", withExtension: "json") else {
+        guard let jsonFilePath = Bundle.main.url(forResource: "data/events/18236", withExtension: "json") else {
             fatalError("not found json file")
         }
 

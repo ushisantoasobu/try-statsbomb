@@ -14,11 +14,13 @@
 		D64D51F32882A70E005E61B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D64D51F22882A70E005E61B1 /* Assets.xcassets */; };
 		D64D51F62882A70E005E61B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D64D51F42882A70E005E61B1 /* LaunchScreen.storyboard */; };
 		D64D51FE2882A773005E61B1 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64D51FD2882A773005E61B1 /* Event.swift */; };
-		D64D52112882AD4D005E61B1 /* 18236.json in Resources */ = {isa = PBXBuildFile; fileRef = D64D52102882AD4D005E61B1 /* 18236.json */; };
 		D6FB80D52888474900692304 /* PassSonarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80D42888474900692304 /* PassSonarViewController.swift */; };
 		D6FB80D7288847DF00692304 /* PassMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80D6288847DF00692304 /* PassMapViewController.swift */; };
 		D6FB80D92888485600692304 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80D82888485600692304 /* Common.swift */; };
-		D6FB80DB28898FE500692304 /* 22.json in Resources */ = {isa = PBXBuildFile; fileRef = D6FB80DA28898FE400692304 /* 22.json */; };
+		D6FB80DD288AE5A700692304 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80DC288AE5A700692304 /* DataFetcher.swift */; };
+		D6FB80E1288AE80000692304 /* data in Resources */ = {isa = PBXBuildFile; fileRef = D6FB80E0288AE80000692304 /* data */; };
+		D6FB80E4288AE87D00692304 /* Lineup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80E3288AE87D00692304 /* Lineup.swift */; };
+		D6FB80E7288AEE7500692304 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80E6288AEE7500692304 /* Game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,11 +33,13 @@
 		D64D51F52882A70E005E61B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D64D51F72882A70E005E61B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D64D51FD2882A773005E61B1 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		D64D52102882AD4D005E61B1 /* 18236.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 18236.json; path = data/events/18236.json; sourceTree = SOURCE_ROOT; };
 		D6FB80D42888474900692304 /* PassSonarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassSonarViewController.swift; sourceTree = "<group>"; };
 		D6FB80D6288847DF00692304 /* PassMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassMapViewController.swift; sourceTree = "<group>"; };
 		D6FB80D82888485600692304 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
-		D6FB80DA28898FE400692304 /* 22.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 22.json; path = data/matches/22.json; sourceTree = SOURCE_ROOT; };
+		D6FB80DC288AE5A700692304 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
+		D6FB80E0288AE80000692304 /* data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data; sourceTree = SOURCE_ROOT; };
+		D6FB80E3288AE87D00692304 /* Lineup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lineup.swift; sourceTree = "<group>"; };
+		D6FB80E6288AEE7500692304 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,12 +72,11 @@
 		D64D51E82882A70D005E61B1 /* try-statsbomb */ = {
 			isa = PBXGroup;
 			children = (
-				D6FB80DA28898FE400692304 /* 22.json */,
-				D64D52102882AD4D005E61B1 /* 18236.json */,
+				D6FB80E2288AE86000692304 /* model */,
+				D6FB80E0288AE80000692304 /* data */,
 				D64D51E92882A70D005E61B1 /* AppDelegate.swift */,
 				D64D51F22882A70E005E61B1 /* Assets.xcassets */,
 				D6FB80D82888485600692304 /* Common.swift */,
-				D64D51FD2882A773005E61B1 /* Event.swift */,
 				D64D51F72882A70E005E61B1 /* Info.plist */,
 				D64D51F42882A70E005E61B1 /* LaunchScreen.storyboard */,
 				D64D51EF2882A70D005E61B1 /* Main.storyboard */,
@@ -81,8 +84,19 @@
 				D6FB80D42888474900692304 /* PassSonarViewController.swift */,
 				D64D51EB2882A70D005E61B1 /* SceneDelegate.swift */,
 				D64D51ED2882A70D005E61B1 /* ViewController.swift */,
+				D6FB80DC288AE5A700692304 /* DataFetcher.swift */,
 			);
 			path = "try-statsbomb";
+			sourceTree = "<group>";
+		};
+		D6FB80E2288AE86000692304 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				D64D51FD2882A773005E61B1 /* Event.swift */,
+				D6FB80E6288AEE7500692304 /* Game.swift */,
+				D6FB80E3288AE87D00692304 /* Lineup.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,9 +159,8 @@
 			files = (
 				D64D51F62882A70E005E61B1 /* LaunchScreen.storyboard in Resources */,
 				D64D51F32882A70E005E61B1 /* Assets.xcassets in Resources */,
-				D64D52112882AD4D005E61B1 /* 18236.json in Resources */,
+				D6FB80E1288AE80000692304 /* data in Resources */,
 				D64D51F12882A70D005E61B1 /* Main.storyboard in Resources */,
-				D6FB80DB28898FE500692304 /* 22.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,12 +172,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D64D51FE2882A773005E61B1 /* Event.swift in Sources */,
+				D6FB80E7288AEE7500692304 /* Game.swift in Sources */,
 				D64D51EE2882A70D005E61B1 /* ViewController.swift in Sources */,
 				D6FB80D7288847DF00692304 /* PassMapViewController.swift in Sources */,
 				D64D51EA2882A70D005E61B1 /* AppDelegate.swift in Sources */,
 				D64D51EC2882A70D005E61B1 /* SceneDelegate.swift in Sources */,
 				D6FB80D52888474900692304 /* PassSonarViewController.swift in Sources */,
+				D6FB80E4288AE87D00692304 /* Lineup.swift in Sources */,
 				D6FB80D92888485600692304 /* Common.swift in Sources */,
+				D6FB80DD288AE5A700692304 /* DataFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

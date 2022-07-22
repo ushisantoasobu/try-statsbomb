@@ -29,6 +29,24 @@ class ViewController: UITableViewController {
         navigationItem.title = "一覧"
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+
+        /*
+        let dataFetcher = DataFetcher()
+        Task {
+            do {
+                let game: Game = try await dataFetcher.fetch(id: 18236)
+                game.lineups.forEach { team in
+                    print("Team: \(team.teamName)")
+                    team.lineup.filter { $0.isStartingMember }.forEach { lineup in
+                        print("Player: \(lineup.playerName) - \(lineup.startingPosition?.position ?? "-")")
+                    }
+                }
+            } catch {
+                print(error)
+                fatalError("error")
+            }
+        }
+         */
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
