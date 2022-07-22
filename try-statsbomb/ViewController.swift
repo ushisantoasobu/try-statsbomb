@@ -11,11 +11,14 @@ class ViewController: UITableViewController {
 
     enum Item: Int, CaseIterable {
         case passSonar
+        case passMap
 
         var title: String {
             switch self {
             case .passSonar:
                 return "パスソナーもどき"
+            case .passMap:
+                return "パスマップもどき"
             }
         }
     }
@@ -48,6 +51,9 @@ class ViewController: UITableViewController {
         switch item {
         case .passSonar:
             let vc = PassSonarViewController()
+            present(vc, animated: true)
+        case .passMap:
+            let vc = PassMapViewController()
             present(vc, animated: true)
         }
     }

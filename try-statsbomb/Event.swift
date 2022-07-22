@@ -15,6 +15,7 @@ struct Event: Codable {
     let period: Int
     let player: Player?
     let pass: Pass?
+    let team: Team?
 }
 
 struct Player: Codable, Hashable, CustomDebugStringConvertible {
@@ -49,6 +50,11 @@ struct PassType: Codable {
 }
 
 struct PassBodyType: Codable {
+    let id: Int
+    let name: String
+}
+
+struct Team: Codable {
     let id: Int
     let name: String
 }

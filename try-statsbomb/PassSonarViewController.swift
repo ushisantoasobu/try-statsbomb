@@ -94,7 +94,7 @@ class PassSonarViewController: UIViewController {
     }
 }
 
-class PassSonarView: UIView {
+fileprivate class PassSonarView: UIView {
 
     var name: String = ""
     var passes: [Pass] = []
@@ -155,7 +155,7 @@ class PassSonarView: UIView {
     }
 }
 
-class PassRecordManager {
+fileprivate class PassRecordManager {
 
     private var dic: [Player: [Pass]] = [:]
 
@@ -180,33 +180,6 @@ class PassRecordManager {
                 passes?.append(data.0)
                 dic[data.1] = passes
             }
-        }
-    }
-}
-
-enum Formation {
-    case f4123
-}
-
-struct PlayerPosCalculator {
-
-    func execute(formation: Formation, index: Int, size: CGSize) throws -> CGPoint {
-        switch formation {
-        case .f4123:
-            let list: [CGPoint] = [
-                .init(x: size.width * 0.5, y: size.height * 0.9),
-                .init(x: size.width * 0.35, y: size.height * 0.75),
-                .init(x: size.width * 0.65, y: size.height * 0.75),
-                .init(x: size.width * 0.1, y: size.height * 0.65),
-                .init(x: size.width * 0.9, y: size.height * 0.65),
-                .init(x: size.width * 0.5, y: size.height * 0.6),
-                .init(x: size.width * 0.35, y: size.height * 0.5),
-                .init(x: size.width * 0.65, y: size.height * 0.5),
-                .init(x: size.width * 0.1, y: size.height * 0.35),
-                .init(x: size.width * 0.9, y: size.height * 0.35),
-                .init(x: size.width * 0.5, y: size.height * 0.25)
-            ]
-            return list[index]
         }
     }
 }
