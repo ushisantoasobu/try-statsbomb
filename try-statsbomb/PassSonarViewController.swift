@@ -16,81 +16,58 @@ class PassSonarViewController: UIViewController {
         view.backgroundColor = .white
     }
 
-    func setup() {
-
-        let manager = PassRecordManager()
-
-        guard let jsonFilePath = Bundle.main.url(forResource: "data/events/18236", withExtension: "json") else {
-            fatalError("not found json file")
-        }
-
-        guard let jsonData = try? Data(contentsOf: jsonFilePath) else {
-            fatalError("failed to load json file")
-        }
-
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        do {
-            let events = try decoder.decode([Event].self, from: jsonData)
-            print(events.count)
-            let passAndPlayerList: [(Pass, Player)] = events.filter { $0.pass != nil }.map { ($0.pass!, $0.player!) }
-//            print(passes)
-
-            manager.setup(passAndPlayerList: passAndPlayerList)
-            print(manager.countList)
-
-        } catch {
-            print(error)
-        }
-
-        let barca_1 = manager.passes.filter { $0.key.name.contains("Víctor") }.first!
-        let barca_2 = manager.passes.filter { $0.key.name.contains("Gerard") }.first!
-        let barca_3 = manager.passes.filter { $0.key.name.contains("Puyol") }.first!
-        let barca_4 = manager.passes.filter { $0.key.name.contains("Abidal") }.first!
-        let barca_5 = manager.passes.filter { $0.key.name.contains("Daniel") }.first!
-        let barca_6 = manager.passes.filter { $0.key.name.contains("Busquets") }.first!
-        let barca_7 = manager.passes.filter { $0.key.name.contains("Iniesta") }.first!
-        let barca_8 = manager.passes.filter { $0.key.name.contains("Xavier") }.first!
-        let barca_9 = manager.passes.filter { $0.key.name.contains("Pedro") }.first!
-        let barca_10 = manager.passes.filter { $0.key.name.contains("Villa") }.first!
-        let barca_11 = manager.passes.filter { $0.key.name.contains("Messi") }.first!
-
-        let barcaPlayerList = [
-            barca_1,
-            barca_2,
-            barca_3,
-            barca_4,
-            barca_5,
-            barca_6,
-            barca_7,
-            barca_8,
-            barca_9,
-            barca_10,
-            barca_11
-        ]
-
-        let calclator = PlayerPosCalculator()
-        barcaPlayerList.enumerated().forEach { aaa in
-            let some = PassSonarView()
-            let size: CGFloat = 500
-            print("@@@@@ size: \(view.frame.size)")
-            let point = try! calclator.execute(formation: .f4123, index: aaa.offset, size: view.frame.size)
-            some.frame = .init(
-                x: point.x - size * 0.5,
-                y: point.y - size * 0.5,
-                width: size,
-                height: size
-            )
-            some.passes = aaa.element.value
-            some.name = aaa.element.key.name
-            view.addSubview(some)
-        }
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         setup()
+    }
+
+    func setup() {
+        let dataFetcher = DataFetcher()
+        Task {
+            do {
+                let game: Game = try await dataFetcher.fetch(id: 18236)
+                let passListConverter = PassListConverter()
+                passListConverter.setup(events: game.events)
+                let playerAndPasses = passListConverter.dic
+
+                await MainActor.run {
+                    game.lineups[0]
+                        .lineup
+                        .filter { $0.isStartingMember }
+                        .forEach { lineup in
+
+                            // プレーヤーの表示
+                            let playerView = BasicPlayerView(
+                                frame: .init(x: 0, y: 0, width: 10, height: 10)
+                            )
+                            let point = PositionToViewConverter()
+                                .convert(positionId: lineup.startingPosition!.positionId)
+                            playerView.center = .init(
+                                x: view.frame.size.width * point.x,
+                                y: view.frame.size.height * point.y
+                            )
+                            playerView.player = lineup
+                            view.addSubview(playerView)
+
+                            // パスソナー表示
+                            let passSonarView = PassSonarView(
+                                frame: .init(x: 0, y: 0, width: 500, height: 500)
+                            )
+                            passSonarView.center = .init(
+                                x: view.frame.size.width * point.x,
+                                y: view.frame.size.height * point.y
+                            )
+                            passSonarView.passes = playerAndPasses[lineup.playerId] ?? []
+                            view.addSubview(passSonarView)
+                    }
+                }
+
+            } catch {
+                print(error)
+                fatalError("error")
+            }
+        }
     }
 }
 
@@ -155,30 +132,22 @@ fileprivate class PassSonarView: UIView {
     }
 }
 
-fileprivate class PassRecordManager {
+fileprivate class PassListConverter {
+    // playerId: PassList
+    var dic: [Int: [Pass]] = [:]
 
-    private var dic: [Player: [Pass]] = [:]
+    func setup(events: [Event]) {
+        let playerAndPassList: [(player: Player, pass: Pass)] = events
+            .filter { $0.pass != nil }
+            .map { ($0.player!, $0.pass!) }
 
-    var passes: [Player: [Pass]] {
-        dic
-    }
-
-    var countList: [(Player, Int)] {
-        return dic.map { key, value in
-            (key, value.count)
-        }
-    }
-
-    func setup(passAndPlayerList: [(Pass, Player)]) {
-        dic = [:]
-
-        passAndPlayerList.forEach { data in
-            if dic[data.1] == nil {
-                dic[data.1] = [data.0]
+        playerAndPassList.forEach { playerAndPass in
+            if dic[playerAndPass.player.id] == nil {
+                dic[playerAndPass.player.id] = [playerAndPass.pass]
             } else {
-                var passes = dic[data.1]
-                passes?.append(data.0)
-                dic[data.1] = passes
+                var passes = dic[playerAndPass.player.id]
+                passes?.append(playerAndPass.pass)
+                dic[playerAndPass.player.id] = passes
             }
         }
     }

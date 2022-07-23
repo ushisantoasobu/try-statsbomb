@@ -20,117 +20,6 @@ class PassMapViewController: UIViewController {
         view.backgroundColor = .white
     }
 
-    func setup() {
-
-        let manager = PassRecordManager()
-
-        guard let jsonFilePath = Bundle.main.url(forResource: "data/events/18236", withExtension: "json") else {
-            fatalError("not found json file")
-        }
-
-        guard let jsonData = try? Data(contentsOf: jsonFilePath) else {
-            fatalError("failed to load json file")
-        }
-
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        do {
-            let events = try decoder.decode([Event].self, from: jsonData)
-            print(events.count)
-
-            let barcaEvents = events.filter { $0.team?.id == 217 }
-
-            let passAndPlayerList: [(Pass, Player)] = barcaEvents
-                .filter { $0.pass != nil }
-                .map { ($0.pass!, $0.player!) }
-            manager.setup(passAndPlayerList: passAndPlayerList)
-            print("list is: \(manager.list)")
-
-        } catch {
-            print(error)
-        }
-
-        var hoge: [Set<Player>: Int] = [:]
-        manager.list
-            .forEach { send, receive in
-            let combination: Set<Player> = [send, receive]
-            if let count = hoge[combination] {
-                hoge[combination] = count + 1
-            } else {
-                hoge[combination] = 1
-            }
-        }
-        print(hoge)
-
-        passMapDrawView.hoge = hoge
-        passMapDrawView.setNeedsDisplay()
-
-//        let calclator = PlayerPosCalculator()
-//        hoge.forEach { (players, passCount) in
-//            let first = Array(players)[0]
-//            let second = Array(players)[1]
-//
-//            guard let firstIndex = detectIndex(player: first),
-//               let secondIndex = detectIndex(player: second) else {
-//                   return
-//            }
-//
-//            let firstPoint = try! calclator.execute(formation: .f4123, index: firstIndex, size: view.frame.size)
-//            let secondPoint = try! calclator.execute(formation: .f4123, index: secondIndex, size: view.frame.size)
-//
-//            let line = UIBezierPath()
-//            line.move(to: firstPoint)
-//            line.addLine(to: secondPoint)
-//            line.close()
-//            UIColor.gray.setStroke()
-//            line.lineWidth = CGFloat(passCount / 2)
-//            line.stroke()
-//        }
-
-//        let barca_1 = manager.passes.filter { $0.key.name.contains("Víctor") }.first!
-//        let barca_2 = manager.passes.filter { $0.key.name.contains("Gerard") }.first!
-//        let barca_3 = manager.passes.filter { $0.key.name.contains("Puyol") }.first!
-//        let barca_4 = manager.passes.filter { $0.key.name.contains("Abidal") }.first!
-//        let barca_5 = manager.passes.filter { $0.key.name.contains("Daniel") }.first!
-//        let barca_6 = manager.passes.filter { $0.key.name.contains("Busquets") }.first!
-//        let barca_7 = manager.passes.filter { $0.key.name.contains("Iniesta") }.first!
-//        let barca_8 = manager.passes.filter { $0.key.name.contains("Xavier") }.first!
-//        let barca_9 = manager.passes.filter { $0.key.name.contains("Pedro") }.first!
-//        let barca_10 = manager.passes.filter { $0.key.name.contains("Villa") }.first!
-//        let barca_11 = manager.passes.filter { $0.key.name.contains("Messi") }.first!
-//
-//        let barcaPlayerList = [
-//            barca_1,
-//            barca_2,
-//            barca_3,
-//            barca_4,
-//            barca_5,
-//            barca_6,
-//            barca_7,
-//            barca_8,
-//            barca_9,
-//            barca_10,
-//            barca_11
-//        ]
-//
-//        let calclator = PlayerPosCalculator()
-//        barcaPlayerList.enumerated().forEach { aaa in
-//            let some = PassSonarView()
-//            let size: CGFloat = 500
-//            print("@@@@@ size: \(view.frame.size)")
-//            let point = try! calclator.execute(formation: .f4123, index: aaa.offset, size: view.frame.size)
-//            some.frame = .init(
-//                x: point.x - size * 0.5,
-//                y: point.y - size * 0.5,
-//                width: size,
-//                height: size
-//            )
-//            some.passes = aaa.element.value
-//            some.name = aaa.element.key.name
-//            view.addSubview(some)
-//        }
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -138,20 +27,91 @@ class PassMapViewController: UIViewController {
 
         setup()
     }
+
+    func setup() {
+
+        let dataFetcher = DataFetcher()
+        Task {
+            do {
+                let game: Game = try await dataFetcher.fetch(id: 18236)
+
+                let converter = TwoPlayersPassListConverer()
+                converter.setup(events: game.events)
+                var _twoPlayersPassList: [Set<Int>: Int] = [:]
+                converter.list.forEach { sender, receiver in
+                    let combination: Set<Int> = [sender, receiver]
+                    if let count = _twoPlayersPassList[combination] {
+                        _twoPlayersPassList[combination] = count + 1
+                    } else {
+                        _twoPlayersPassList[combination] = 1
+                    }
+                }
+                let twoPlayersPassList = _twoPlayersPassList
+
+                await MainActor.run {
+                    var some: [Int: CGPoint] = [:]
+
+                    game.lineups[0]
+                        .lineup
+                        .filter { $0.isStartingMember }
+                        .forEach { lineup in
+
+                            // プレーヤーの表示
+                            let playerView = BasicPlayerView(
+                                frame: .init(x: 0, y: 0, width: 10, height: 10)
+                            )
+                            let point = PositionToViewConverter()
+                                .convert(positionId: lineup.startingPosition!.positionId)
+                            some[lineup.playerId] = point
+                            playerView.center = .init(
+                                x: view.frame.size.width * point.x,
+                                y: view.frame.size.height * point.y
+                            )
+                            playerView.player = lineup
+                            view.addSubview(playerView)
+                    }
+
+                    // パスマップ描画
+                    let _some = some
+                    passMapDrawView.list = twoPlayersPassList
+                        .filter { playerIds, _ in
+                            _some.keys.contains(Array(playerIds)[0]) &&
+                            _some.keys.contains(Array(playerIds)[1])
+                        }
+                        .map({ playerIds, passCount in
+                        return (
+                            firstPlayerPoint: some[Array(playerIds)[0]]!,
+                            secondPlayerPoint: some[Array(playerIds)[1]]!,
+                            passCount: passCount
+                        )
+                    })
+                    passMapDrawView.setNeedsDisplay()
+                }
+
+            } catch {
+                print(error)
+                fatalError("error")
+            }
+        }
+    }
 }
 
-fileprivate class PassRecordManager {
+fileprivate class TwoPlayersPassListConverer {
 
-    private (set) var list: [(send: Player, receive: Player)] = []
+    // playerId, playerId
+    private (set) var list: [(sender: Int, receiver: Int)] = []
 
-    func setup(passAndPlayerList: [(Pass, Player)]) {
+    func setup(events: [Event]) {
         list = []
 
-        passAndPlayerList.forEach { data in
-            let send = data.1
+        events
+            .filter { $0.pass != nil }
+            .map { ($0.pass!, $0.player!) }
+            .forEach { data in
+            let sender = data.1
             if let recipient = data.0.recipient {
-                let receive = recipient
-                list.append((send: send, receive: receive))
+                let receiver = recipient
+                list.append((sender: sender.id, receiver: receiver.id))
             }
         }
     }
@@ -159,7 +119,11 @@ fileprivate class PassRecordManager {
 
 class PassMapDrawView: UIView {
 
-    var hoge: [Set<Player>: Int] = [:]
+    var list: [(firstPlayerPoint: CGPoint, secondPlayerPoint: CGPoint, passCount: Int)] = [] {
+        didSet {
+            print(list)
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -174,42 +138,24 @@ class PassMapDrawView: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
 
-        let calclator = PlayerPosCalculator()
-        hoge.forEach { (players, passCount) in
-            let first = Array(players)[0]
-            let second = Array(players)[1]
-
-            guard let firstIndex = detectIndex(player: first),
-               let secondIndex = detectIndex(player: second) else {
-                   return
-            }
-
-            let firstPoint = try! calclator.execute(formation: .f4123, index: firstIndex, size: frame.size)
-            let secondPoint = try! calclator.execute(formation: .f4123, index: secondIndex, size: frame.size)
-
+        list.forEach {
             let line = UIBezierPath()
-            line.move(to: firstPoint)
-            line.addLine(to: secondPoint)
+            line.move(
+                to: .init(
+                    x: frame.width * $0.firstPlayerPoint.x,
+                    y: frame.height * $0.firstPlayerPoint.y
+                )
+            )
+            line.addLine(
+                to: .init(
+                    x: frame.width * $0.secondPlayerPoint.x,
+                    y: frame.height * $0.secondPlayerPoint.y
+                )
+            )
             line.close()
             UIColor.gray.setStroke()
-            line.lineWidth = CGFloat(passCount / 2)
+            line.lineWidth = CGFloat($0.passCount / 2)
             line.stroke()
         }
     }
-}
-
-fileprivate func detectIndex(player: Player) -> Int? {
-    if player.name.contains("Víctor") { return 0 }
-    if player.name.contains("Gerard") { return 1 }
-    if player.name.contains("Puyol") { return 2 }
-    if player.name.contains("Abidal") { return 3 }
-    if player.name.contains("Daniel") { return 4 }
-    if player.name.contains("Busquets") { return 5 }
-    if player.name.contains("Iniesta") { return 6 }
-    if player.name.contains("Xavier") { return 7 }
-    if player.name.contains("Pedro") { return 8 }
-    if player.name.contains("Villa") { return 9 }
-    if player.name.contains("Messi") { return 10 }
-
-    return nil
 }
