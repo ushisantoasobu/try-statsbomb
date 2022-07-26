@@ -22,7 +22,8 @@ struct PositionToViewConverter {
             // Right Center Back
             return .init(x: 0.7, y: 0.7)
         case 4:
-            fatalError()
+            // Center Back
+            return .init(x: 0.5, y: 0.75)
         case 5:
             // Left Center Back"
             return .init(x: 0.3, y: 0.7)
@@ -30,9 +31,11 @@ struct PositionToViewConverter {
             // Left Back
             return .init(x: 0.1, y: 0.6)
         case 7:
-            fatalError()
+            // Right Wing Back
+            return .init(x: 0.9, y: 0.5)
         case 8:
-            fatalError()
+            // Left Wing Back
+            return .init(x: 0.1, y: 0.5)
         case 9:
             // Right Defensive Midfield
             return .init(x: 0.7, y: 0.5)

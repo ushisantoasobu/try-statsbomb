@@ -33,7 +33,7 @@ class PassMapViewController: UIViewController {
         let dataFetcher = DataFetcher()
         Task {
             do {
-                let game: Game = try await dataFetcher.fetch(id: 18236)
+                let game: Game = try await dataFetcher.fetch(id: 3773387)
 
                 let converter = TwoPlayersPassListConverer()
                 converter.setup(events: game.events)
@@ -51,7 +51,7 @@ class PassMapViewController: UIViewController {
                 await MainActor.run {
                     var some: [Int: CGPoint] = [:]
 
-                    game.lineups[0]
+                    game.lineups[1]
                         .lineup
                         .filter { $0.isStartingMember }
                         .forEach { lineup in

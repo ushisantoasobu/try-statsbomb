@@ -26,13 +26,13 @@ class PassSonarViewController: UIViewController {
         let dataFetcher = DataFetcher()
         Task {
             do {
-                let game: Game = try await dataFetcher.fetch(id: 18236)
+                let game: Game = try await dataFetcher.fetch(id: 3773387)
                 let passListConverter = PassListConverter()
                 passListConverter.setup(events: game.events)
                 let playerAndPasses = passListConverter.dic
 
                 await MainActor.run {
-                    game.lineups[0]
+                    game.lineups[1]
                         .lineup
                         .filter { $0.isStartingMember }
                         .forEach { lineup in
