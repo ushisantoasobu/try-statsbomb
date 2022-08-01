@@ -90,3 +90,10 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+
+# https://github.com/statsbomb/open-data/tree/master/data のデータ
+data/competitions.json
+data/events/*.json
+data/lineups/*.json
+data/three-sixty/*.json
+data/matches/**/*.json
