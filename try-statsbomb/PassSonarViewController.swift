@@ -134,7 +134,7 @@ fileprivate class PassSonarView: UIView {
 
 fileprivate class PassListConverter {
     // playerId: PassList
-    var dic: [Int: [Pass]] = [:]
+    var dic: [Player.ID: [Pass]] = [:]
 
     func setup(events: [Event]) {
         let playerAndPassList: [(player: Player, pass: Pass)] = events

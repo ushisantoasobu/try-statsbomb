@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct LineupTeam: Codable {
+struct LineupTeam: Decodable {
     let teamId: Int
     let teamName: String
     let lineup: [Lineup]
 }
 
-struct Lineup: Codable {
-    let playerId: Int
+struct Lineup: Decodable {
+    let playerId: Player.ID // TODO: ここの整合性、、、どうしよう
     let playerName: String
     let positions: [LineupPosition]
 
@@ -29,7 +29,7 @@ struct Lineup: Codable {
     }
 }
 
-struct LineupPosition: Codable {
+struct LineupPosition: Decodable {
     let from: String?
     let to: String?
     let positionId: Int

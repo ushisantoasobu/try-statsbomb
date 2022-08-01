@@ -37,9 +37,9 @@ class PassMapViewController: UIViewController {
 
                 let converter = TwoPlayersPassListConverer()
                 converter.setup(events: game.events)
-                var _twoPlayersPassList: [Set<Int>: Int] = [:]
+                var _twoPlayersPassList: [Set<Player.ID>: Int] = [:]
                 converter.list.forEach { sender, receiver in
-                    let combination: Set<Int> = [sender, receiver]
+                    let combination: Set<Player.ID> = [sender, receiver]
                     if let count = _twoPlayersPassList[combination] {
                         _twoPlayersPassList[combination] = count + 1
                     } else {
@@ -49,7 +49,7 @@ class PassMapViewController: UIViewController {
                 let twoPlayersPassList = _twoPlayersPassList
 
                 await MainActor.run {
-                    var some: [Int: CGPoint] = [:]
+                    var some: [Player.ID: CGPoint] = [:]
 
                     game.lineups[1]
                         .lineup
@@ -98,8 +98,7 @@ class PassMapViewController: UIViewController {
 
 fileprivate class TwoPlayersPassListConverer {
 
-    // playerId, playerId
-    private (set) var list: [(sender: Int, receiver: Int)] = []
+    private (set) var list: [(sender: Player.ID, receiver: Player.ID)] = []
 
     func setup(events: [Event]) {
         list = []

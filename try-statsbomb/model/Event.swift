@@ -9,8 +9,10 @@ import Foundation
 
 // MARK: - event
 
-struct Event: Codable {
-    let id: String
+struct Event: Decodable {
+    typealias ID = Identifier<Self, String>
+
+    let id: ID
     let timestamp: String
     let period: Int
     let player: Player?
@@ -18,8 +20,10 @@ struct Event: Codable {
     let team: Team?
 }
 
-struct Player: Codable, Hashable, CustomDebugStringConvertible {
-    let id: Int
+struct Player: Decodable, Hashable, CustomDebugStringConvertible {
+    typealias ID = Identifier<Self, Int>
+
+    let id: ID
     let name: String
 
     var debugDescription: String {
@@ -29,7 +33,7 @@ struct Player: Codable, Hashable, CustomDebugStringConvertible {
 
 // MARK: - pass
 
-struct Pass: Codable {
+struct Pass: Decodable {
     let recipient: Player?
     let length: Double
     let angle: Double
@@ -39,22 +43,30 @@ struct Pass: Codable {
     let bodyPart: PassBodyType?
 }
 
-struct PassHeight: Codable {
-    let id: Int
+struct PassHeight: Decodable {
+    typealias ID = Identifier<Self, Int>
+
+    let id: ID
     let name: String
 }
 
-struct PassType: Codable {
-    let id: Int
+struct PassType: Decodable {
+    typealias ID = Identifier<Self, Int>
+
+    let id: ID
     let name: String
 }
 
-struct PassBodyType: Codable {
-    let id: Int
+struct PassBodyType: Decodable {
+    typealias ID = Identifier<Self, Int>
+
+    let id: ID
     let name: String
 }
 
-struct Team: Codable {
-    let id: Int
+struct Team: Decodable {
+    typealias ID = Identifier<Self, Int>
+
+    let id: ID
     let name: String
 }

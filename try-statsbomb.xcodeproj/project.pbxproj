@@ -24,6 +24,7 @@
 		D6FB80EA288AEFDF00692304 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80E9288AEFDF00692304 /* PlaygroundViewController.swift */; };
 		D6FB80EC288AF08200692304 /* PositionToViewConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80EB288AF08200692304 /* PositionToViewConverter.swift */; };
 		D6FB80EE288AF39800692304 /* BasicPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80ED288AF39800692304 /* BasicPlayerView.swift */; };
+		D6FB80F02890AC7300692304 /* ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80EF2890AC7300692304 /* ID.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		D6FB80E9288AEFDF00692304 /* PlaygroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundViewController.swift; sourceTree = "<group>"; };
 		D6FB80EB288AF08200692304 /* PositionToViewConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionToViewConverter.swift; sourceTree = "<group>"; };
 		D6FB80ED288AF39800692304 /* BasicPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicPlayerView.swift; sourceTree = "<group>"; };
+		D6FB80EF2890AC7300692304 /* ID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ID.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			children = (
 				D64D51FD2882A773005E61B1 /* Event.swift */,
 				D6FB80E6288AEE7500692304 /* Game.swift */,
+				D6FB80EF2890AC7300692304 /* ID.swift */,
 				D6FB80E3288AE87D00692304 /* Lineup.swift */,
 			);
 			path = model;
@@ -192,6 +195,7 @@
 				D6FB80E7288AEE7500692304 /* Game.swift in Sources */,
 				D6FB80EA288AEFDF00692304 /* PlaygroundViewController.swift in Sources */,
 				D64D51EE2882A70D005E61B1 /* ViewController.swift in Sources */,
+				D6FB80F02890AC7300692304 /* ID.swift in Sources */,
 				D6FB80D7288847DF00692304 /* PassMapViewController.swift in Sources */,
 				D64D51EA2882A70D005E61B1 /* AppDelegate.swift in Sources */,
 				D64D51EC2882A70D005E61B1 /* SceneDelegate.swift in Sources */,
