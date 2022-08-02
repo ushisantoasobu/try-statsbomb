@@ -20,6 +20,38 @@ struct DataFetcher {
         return try await Game(lineups: lineups, events: events)
     }
 
+    func fetchCompetitions() async throws -> [Competition] {
+        guard let jsonFilePath = Bundle.main.url(forResource: "data/competitions", withExtension: "json") else {
+            throw FetchError.fileNotFound
+        }
+
+        guard let jsonData = try? Data(contentsOf: jsonFilePath) else {
+            throw FetchError.failedToData
+        }
+
+        let decoder = JSONDecoder()
+//        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return try decoder.decode([Competition].self, from: jsonData)
+    }
+
+    func fetchMatches(
+        competitionId: Competition.ID,
+        seasonId: Season.ID
+    ) async throws -> [Match] {
+        let path = "data/matches/\(competitionId.rawValue)/\(seasonId.rawValue)"
+        guard let jsonFilePath = Bundle.main.url(forResource: path, withExtension: "json") else {
+            throw FetchError.fileNotFound
+        }
+
+        guard let jsonData = try? Data(contentsOf: jsonFilePath) else {
+            throw FetchError.failedToData
+        }
+
+        let decoder = JSONDecoder()
+//        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return try decoder.decode([Match].self, from: jsonData)
+    }
+
     private func fetchLineups(id: Int) async throws -> [LineupTeam] {
         guard let jsonFilePath = Bundle.main.url(forResource: "data/lineups/\(id)", withExtension: "json") else {
             throw FetchError.fileNotFound
