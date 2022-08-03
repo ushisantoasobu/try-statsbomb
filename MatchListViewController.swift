@@ -67,5 +67,8 @@ class MatchListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: false)
 
         print(list[indexPath.row])
+
+        let vc = AnalysisTypeListViewController(competition: competition, match: list[indexPath.row])
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

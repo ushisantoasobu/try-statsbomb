@@ -11,6 +11,7 @@
 		D626CD7D28981AFE0060AA16 /* CompetitionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D626CD7C28981AFE0060AA16 /* CompetitionListViewController.swift */; };
 		D626CD7F28996CC20060AA16 /* MatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D626CD7E28996CC20060AA16 /* MatchListViewController.swift */; };
 		D626CD8128996CEC0060AA16 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = D626CD8028996CEC0060AA16 /* Match.swift */; };
+		D626CD83289B35D50060AA16 /* AnalysisTypeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D626CD82289B35D50060AA16 /* AnalysisTypeListViewController.swift */; };
 		D64D51EA2882A70D005E61B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64D51E92882A70D005E61B1 /* AppDelegate.swift */; };
 		D64D51EC2882A70D005E61B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64D51EB2882A70D005E61B1 /* SceneDelegate.swift */; };
 		D64D51EE2882A70D005E61B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64D51ED2882A70D005E61B1 /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 		D626CD7C28981AFE0060AA16 /* CompetitionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionListViewController.swift; sourceTree = "<group>"; };
 		D626CD7E28996CC20060AA16 /* MatchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchListViewController.swift; sourceTree = "<group>"; };
 		D626CD8028996CEC0060AA16 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		D626CD82289B35D50060AA16 /* AnalysisTypeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisTypeListViewController.swift; sourceTree = "<group>"; };
 		D64D51E62882A70D005E61B1 /* try-statsbomb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "try-statsbomb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D64D51E92882A70D005E61B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D64D51EB2882A70D005E61B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 		D64D51DD2882A70D005E61B1 = {
 			isa = PBXGroup;
 			children = (
+				D626CD82289B35D50060AA16 /* AnalysisTypeListViewController.swift */,
 				D626CD7E28996CC20060AA16 /* MatchListViewController.swift */,
 				D64D51E82882A70D005E61B1 /* try-statsbomb */,
 				D64D51E72882A70D005E61B1 /* Products */,
@@ -213,6 +216,7 @@
 				D6FB80D7288847DF00692304 /* PassMapViewController.swift in Sources */,
 				D64D51EA2882A70D005E61B1 /* AppDelegate.swift in Sources */,
 				D626CD7F28996CC20060AA16 /* MatchListViewController.swift in Sources */,
+				D626CD83289B35D50060AA16 /* AnalysisTypeListViewController.swift in Sources */,
 				D64D51EC2882A70D005E61B1 /* SceneDelegate.swift in Sources */,
 				D626CD8128996CEC0060AA16 /* Match.swift in Sources */,
 				D6FB80EE288AF39800692304 /* BasicPlayerView.swift in Sources */,
