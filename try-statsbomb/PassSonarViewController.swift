@@ -10,6 +10,38 @@ import UIKit
 
 class PassSonarViewController: UIViewController {
 
+    var competition: Competition!
+    var match: Match!
+    var isHome: Bool!
+
+    static func instantiate(
+        competition: Competition,
+        match: Match,
+        isHome: Bool
+    ) -> PassSonarViewController {
+        let vc = PassSonarViewController()
+        vc.competition = competition
+        vc.match = match
+        vc.isHome = isHome
+        return vc
+    }
+
+//    init(competition: Competition, match: Match, isHome: Bool) {
+//        self.competition = competition
+//        self.match = match
+//        self.isHome = isHome
+//
+//        super.init()
+//    }
+//
+//    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+//        fatalError()
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,13 +58,13 @@ class PassSonarViewController: UIViewController {
         let dataFetcher = DataFetcher()
         Task {
             do {
-                let game: Game = try await dataFetcher.fetch(id: 3773387)
+                let game: Game = try await dataFetcher.fetch(id: match.id)
                 let passListConverter = PassListConverter()
                 passListConverter.setup(events: game.events)
                 let playerAndPasses = passListConverter.dic
 
                 await MainActor.run {
-                    game.lineups[1]
+                    game.lineups[isHome ? 0 : 1]
                         .lineup
                         .filter { $0.isStartingMember }
                         .forEach { lineup in

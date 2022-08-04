@@ -63,11 +63,11 @@ struct PositionToViewConverter {
             // Right Wing
             return .init(x: 0.9, y: 0.15)
         case 18:
-            return .init(x: 0, y: 0)
+            fatalError()
         case 19:
-            return .init(x: 0, y: 0)
+            fatalError()
         case 20:
-            return .init(x: 0, y: 0)
+            fatalError()
         case 21:
             // Left Wing
             return .init(x: 0.1, y: 0.15)

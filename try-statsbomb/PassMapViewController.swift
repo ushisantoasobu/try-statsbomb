@@ -10,6 +10,22 @@ import UIKit
 
 class PassMapViewController: UIViewController {
 
+    var competition: Competition!
+    var match: Match!
+    var isHome: Bool!
+
+    static func instantiate(
+        competition: Competition,
+        match: Match,
+        isHome: Bool
+    ) -> PassMapViewController {
+        let vc = PassMapViewController()
+        vc.competition = competition
+        vc.match = match
+        vc.isHome = isHome
+        return vc
+    }
+
     let passMapDrawView = PassMapDrawView(frame: .zero)
 
     override func viewDidLoad() {
@@ -33,7 +49,7 @@ class PassMapViewController: UIViewController {
         let dataFetcher = DataFetcher()
         Task {
             do {
-                let game: Game = try await dataFetcher.fetch(id: 3773387)
+                let game: Game = try await dataFetcher.fetch(id: match.id)
 
                 let converter = TwoPlayersPassListConverer()
                 converter.setup(events: game.events)
@@ -51,7 +67,7 @@ class PassMapViewController: UIViewController {
                 await MainActor.run {
                     var some: [Player.ID: CGPoint] = [:]
 
-                    game.lineups[1]
+                    game.lineups[isHome ? 0 : 1]
                         .lineup
                         .filter { $0.isStartingMember }
                         .forEach { lineup in

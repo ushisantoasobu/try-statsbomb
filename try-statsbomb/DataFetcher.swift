@@ -14,7 +14,7 @@ struct DataFetcher {
         case failedToData
     }
 
-    func fetch(id: Int) async throws -> Game {
+    func fetch(id: Match.ID) async throws -> Game {
         async let lineups = fetchLineups(id: id)
         async let events = fetchEvents(id: id)
         return try await Game(lineups: lineups, events: events)
@@ -52,8 +52,8 @@ struct DataFetcher {
         return try decoder.decode([Match].self, from: jsonData)
     }
 
-    private func fetchLineups(id: Int) async throws -> [LineupTeam] {
-        guard let jsonFilePath = Bundle.main.url(forResource: "data/lineups/\(id)", withExtension: "json") else {
+    private func fetchLineups(id: Match.ID) async throws -> [LineupTeam] {
+        guard let jsonFilePath = Bundle.main.url(forResource: "data/lineups/\(id.rawValue)", withExtension: "json") else {
             throw FetchError.fileNotFound
         }
 
@@ -66,8 +66,8 @@ struct DataFetcher {
         return try decoder.decode([LineupTeam].self, from: jsonData)
     }
 
-    private func fetchEvents(id: Int) async throws -> [Event] {
-        guard let jsonFilePath = Bundle.main.url(forResource: "data/events/\(id)", withExtension: "json") else {
+    private func fetchEvents(id: Match.ID) async throws -> [Event] {
+        guard let jsonFilePath = Bundle.main.url(forResource: "data/events/\(id.rawValue)", withExtension: "json") else {
             throw FetchError.fileNotFound
         }
 

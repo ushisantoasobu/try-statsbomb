@@ -71,11 +71,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D64D51DD2882A70D005E61B1 = {
+		D626CD84289B39150060AA16 /* vc */ = {
 			isa = PBXGroup;
 			children = (
 				D626CD82289B35D50060AA16 /* AnalysisTypeListViewController.swift */,
 				D626CD7E28996CC20060AA16 /* MatchListViewController.swift */,
+				D626CD7C28981AFE0060AA16 /* CompetitionListViewController.swift */,
+			);
+			path = vc;
+			sourceTree = "<group>";
+		};
+		D64D51DD2882A70D005E61B1 = {
+			isa = PBXGroup;
+			children = (
 				D64D51E82882A70D005E61B1 /* try-statsbomb */,
 				D64D51E72882A70D005E61B1 /* Products */,
 			);
@@ -104,11 +112,11 @@
 				D6FB80D6288847DF00692304 /* PassMapViewController.swift */,
 				D6FB80D42888474900692304 /* PassSonarViewController.swift */,
 				D6FB80E9288AEFDF00692304 /* PlaygroundViewController.swift */,
+				D6FB80EB288AF08200692304 /* PositionToViewConverter.swift */,
 				D64D51EB2882A70D005E61B1 /* SceneDelegate.swift */,
+				D626CD84289B39150060AA16 /* vc */,
 				D6FB80E8288AEF8300692304 /* view */,
 				D64D51ED2882A70D005E61B1 /* ViewController.swift */,
-				D6FB80EB288AF08200692304 /* PositionToViewConverter.swift */,
-				D626CD7C28981AFE0060AA16 /* CompetitionListViewController.swift */,
 			);
 			path = "try-statsbomb";
 			sourceTree = "<group>";

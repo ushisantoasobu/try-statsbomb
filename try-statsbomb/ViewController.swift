@@ -71,8 +71,9 @@ class ViewController: UITableViewController {
 
         switch item {
         case .passSonar:
-            let vc = PassSonarViewController()
-            present(vc, animated: true)
+//            let vc = PassSonarViewController()
+//            present(vc, animated: true)
+            break
         case .passMap:
             let vc = PassMapViewController()
             present(vc, animated: true)
