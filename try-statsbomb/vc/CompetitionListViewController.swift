@@ -17,6 +17,13 @@ class CompetitionListViewController: UITableViewController {
 
         navigationItem.title = "Competitions"
 
+        navigationItem.rightBarButtonItem = .init(
+            title: "debug",
+            style: .plain,
+            target: self,
+            action: #selector(debugSelected)
+        )
+
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
         Task {
@@ -27,6 +34,11 @@ class CompetitionListViewController: UITableViewController {
                 print(error)
             }
         }
+    }
+
+    @objc func debugSelected() {
+        let vc = CheckPositionViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     // MARK: - Table view data source

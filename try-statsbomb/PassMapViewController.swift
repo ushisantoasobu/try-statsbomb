@@ -33,6 +33,7 @@ class PassMapViewController: UIViewController {
 
         view.addSubview(passMapDrawView)
 
+        setupCloseButtonOnNav()
         view.backgroundColor = .white
     }
 
@@ -81,7 +82,7 @@ class PassMapViewController: UIViewController {
                             some[lineup.playerId] = point
                             playerView.center = .init(
                                 x: view.frame.size.width * point.x,
-                                y: view.frame.size.height * point.y
+                                y: view.frame.size.height * (1 - point.y)
                             )
                             playerView.player = lineup
                             view.addSubview(playerView)
@@ -158,13 +159,13 @@ class PassMapDrawView: UIView {
             line.move(
                 to: .init(
                     x: frame.width * $0.firstPlayerPoint.x,
-                    y: frame.height * $0.firstPlayerPoint.y
+                    y: frame.height * (1 - $0.firstPlayerPoint.y)
                 )
             )
             line.addLine(
                 to: .init(
                     x: frame.width * $0.secondPlayerPoint.x,
-                    y: frame.height * $0.secondPlayerPoint.y
+                    y: frame.height * (1 - $0.secondPlayerPoint.y)
                 )
             )
             line.close()

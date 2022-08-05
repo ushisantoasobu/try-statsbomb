@@ -107,14 +107,18 @@ class AnalysisTypeListViewController: UITableViewController {
                 match: match,
                 isHome: isHome
             )
-            present(vc, animated: true)
+            let nav = UINavigationController(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true)
         case .passMap:
             let vc = PassMapViewController.instantiate(
                 competition: competition,
                 match: match,
                 isHome: isHome
             )
-            present(vc, animated: true)
+            let nav = UINavigationController(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true)
         case .playground:
             break
         }

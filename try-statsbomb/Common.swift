@@ -34,3 +34,19 @@ struct PlayerPosCalculator {
         }
     }
 }
+
+extension UIViewController {
+
+    func setupCloseButtonOnNav() {
+        navigationItem.leftBarButtonItem = .init(
+            title: "閉じる",
+            style: .plain,
+            target: self,
+            action: #selector(closeButtonOnNavTapped)
+        )
+    }
+
+    @objc func closeButtonOnNavTapped() {
+        dismiss(animated: true, completion: nil)
+    }
+}

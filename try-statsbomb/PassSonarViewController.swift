@@ -46,6 +46,8 @@ class PassSonarViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
+
+        setupCloseButtonOnNav()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -77,7 +79,7 @@ class PassSonarViewController: UIViewController {
                                 .convert(positionId: lineup.startingPosition!.positionId)
                             playerView.center = .init(
                                 x: view.frame.size.width * point.x,
-                                y: view.frame.size.height * point.y
+                                y: view.frame.size.height * (1 - point.y)
                             )
                             playerView.player = lineup
                             view.addSubview(playerView)
@@ -88,7 +90,7 @@ class PassSonarViewController: UIViewController {
                             )
                             passSonarView.center = .init(
                                 x: view.frame.size.width * point.x,
-                                y: view.frame.size.height * point.y
+                                y: view.frame.size.height * (1 - point.y)
                             )
                             passSonarView.passes = playerAndPasses[lineup.playerId] ?? []
                             view.addSubview(passSonarView)
@@ -145,7 +147,7 @@ fileprivate class PassSonarView: UIView {
             let line = UIBezierPath()
             line.move(to: CGPoint(x: frame.size.width / 2, y: frame.size.height / 2))
             // 下の length * xxx は補正値
-            let adjustment: CGFloat = 2
+            let adjustment: CGFloat = 4
             let x: Double = (pass.length * adjustment) * cos(angle - CGFloat.pi * 0.5)
             let y: Double = (pass.length * adjustment) * sin(angle - CGFloat.pi * 0.5)
 

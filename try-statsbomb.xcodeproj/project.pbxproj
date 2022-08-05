@@ -12,6 +12,8 @@
 		D626CD7F28996CC20060AA16 /* MatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D626CD7E28996CC20060AA16 /* MatchListViewController.swift */; };
 		D626CD8128996CEC0060AA16 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = D626CD8028996CEC0060AA16 /* Match.swift */; };
 		D626CD83289B35D50060AA16 /* AnalysisTypeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D626CD82289B35D50060AA16 /* AnalysisTypeListViewController.swift */; };
+		D626CD87289C92120060AA16 /* CheckPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D626CD86289C92120060AA16 /* CheckPositionViewController.swift */; };
+		D626CD89289C928C0060AA16 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D626CD88289C928C0060AA16 /* Environment.swift */; };
 		D64D51EA2882A70D005E61B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64D51E92882A70D005E61B1 /* AppDelegate.swift */; };
 		D64D51EC2882A70D005E61B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64D51EB2882A70D005E61B1 /* SceneDelegate.swift */; };
 		D64D51EE2882A70D005E61B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64D51ED2882A70D005E61B1 /* ViewController.swift */; };
@@ -38,6 +40,8 @@
 		D626CD7E28996CC20060AA16 /* MatchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchListViewController.swift; sourceTree = "<group>"; };
 		D626CD8028996CEC0060AA16 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		D626CD82289B35D50060AA16 /* AnalysisTypeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisTypeListViewController.swift; sourceTree = "<group>"; };
+		D626CD86289C92120060AA16 /* CheckPositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPositionViewController.swift; sourceTree = "<group>"; };
+		D626CD88289C928C0060AA16 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		D64D51E62882A70D005E61B1 /* try-statsbomb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "try-statsbomb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D64D51E92882A70D005E61B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D64D51EB2882A70D005E61B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +85,14 @@
 			path = vc;
 			sourceTree = "<group>";
 		};
+		D626CD85289C91C00060AA16 /* debug */ = {
+			isa = PBXGroup;
+			children = (
+				D626CD86289C92120060AA16 /* CheckPositionViewController.swift */,
+			);
+			path = debug;
+			sourceTree = "<group>";
+		};
 		D64D51DD2882A70D005E61B1 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +117,8 @@
 				D6FB80D82888485600692304 /* Common.swift */,
 				D6FB80E0288AE80000692304 /* data */,
 				D6FB80DC288AE5A700692304 /* DataFetcher.swift */,
+				D626CD85289C91C00060AA16 /* debug */,
+				D626CD88289C928C0060AA16 /* Environment.swift */,
 				D64D51F72882A70E005E61B1 /* Info.plist */,
 				D64D51F42882A70E005E61B1 /* LaunchScreen.storyboard */,
 				D64D51EF2882A70D005E61B1 /* Main.storyboard */,
@@ -220,9 +234,11 @@
 				D6FB80EA288AEFDF00692304 /* PlaygroundViewController.swift in Sources */,
 				D626CD7D28981AFE0060AA16 /* CompetitionListViewController.swift in Sources */,
 				D64D51EE2882A70D005E61B1 /* ViewController.swift in Sources */,
+				D626CD87289C92120060AA16 /* CheckPositionViewController.swift in Sources */,
 				D6FB80F02890AC7300692304 /* ID.swift in Sources */,
 				D6FB80D7288847DF00692304 /* PassMapViewController.swift in Sources */,
 				D64D51EA2882A70D005E61B1 /* AppDelegate.swift in Sources */,
+				D626CD89289C928C0060AA16 /* Environment.swift in Sources */,
 				D626CD7F28996CC20060AA16 /* MatchListViewController.swift in Sources */,
 				D626CD83289B35D50060AA16 /* AnalysisTypeListViewController.swift in Sources */,
 				D64D51EC2882A70D005E61B1 /* SceneDelegate.swift in Sources */,

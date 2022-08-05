@@ -33,7 +33,7 @@ class BasicPlayerView: UIView {
             return
         }
 
-        nameLabel.text = player.playerName
+        nameLabel.text = player.playerNickname ?? player.playerName
         nameLabel.sizeToFit()
 //        nameLabel.center = center
         nameLabel.frame = .init(
