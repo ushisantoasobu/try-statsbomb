@@ -18,6 +18,7 @@ struct Event: Decodable {
     let player: Player?
     let pass: Pass?
     let team: Team?
+    let location: [Double]?
 }
 
 struct Player: Decodable, Hashable, CustomDebugStringConvertible {
@@ -41,6 +42,7 @@ struct Pass: Decodable {
     let endLocation: [Double]
     let type: PassType?
     let bodyPart: PassBodyType?
+    let outcome: PassOutcome?
 }
 
 struct PassHeight: Decodable {
@@ -65,6 +67,13 @@ struct PassBodyType: Decodable {
 }
 
 struct Team: Decodable {
+    typealias ID = Identifier<Self, Int>
+
+    let id: ID
+    let name: String
+}
+
+struct PassOutcome: Decodable {
     typealias ID = Identifier<Self, Int>
 
     let id: ID

@@ -12,6 +12,7 @@ class AnalysisTypeListViewController: UITableViewController {
     enum Item: Int, CaseIterable {
         case passSonar
         case passMap
+        case passMapSolo
         case playground
 
         var title: String {
@@ -20,6 +21,8 @@ class AnalysisTypeListViewController: UITableViewController {
                 return "パスソナーもどき"
             case .passMap:
                 return "パスマップもどき"
+            case .passMapSolo:
+                return "パスマップ個人"
             case .playground:
                 return "Playground"
             }
@@ -115,6 +118,14 @@ class AnalysisTypeListViewController: UITableViewController {
                 competition: competition,
                 match: match,
                 isHome: isHome
+            )
+            let nav = UINavigationController(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true)
+        case .passMapSolo:
+            let vc = PassMapSoloViewController.instantiate(
+                competition: competition,
+                match: match
             )
             let nav = UINavigationController(rootViewController: vc)
             nav.modalPresentationStyle = .fullScreen

@@ -14,6 +14,7 @@
 		D626CD83289B35D50060AA16 /* AnalysisTypeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D626CD82289B35D50060AA16 /* AnalysisTypeListViewController.swift */; };
 		D626CD87289C92120060AA16 /* CheckPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D626CD86289C92120060AA16 /* CheckPositionViewController.swift */; };
 		D626CD89289C928C0060AA16 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D626CD88289C928C0060AA16 /* Environment.swift */; };
+		D626CD8B289F26590060AA16 /* PassMapSoloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D626CD8A289F26590060AA16 /* PassMapSoloViewController.swift */; };
 		D64D51EA2882A70D005E61B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64D51E92882A70D005E61B1 /* AppDelegate.swift */; };
 		D64D51EC2882A70D005E61B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64D51EB2882A70D005E61B1 /* SceneDelegate.swift */; };
 		D64D51EE2882A70D005E61B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64D51ED2882A70D005E61B1 /* ViewController.swift */; };
@@ -42,6 +43,7 @@
 		D626CD82289B35D50060AA16 /* AnalysisTypeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisTypeListViewController.swift; sourceTree = "<group>"; };
 		D626CD86289C92120060AA16 /* CheckPositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPositionViewController.swift; sourceTree = "<group>"; };
 		D626CD88289C928C0060AA16 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		D626CD8A289F26590060AA16 /* PassMapSoloViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassMapSoloViewController.swift; sourceTree = "<group>"; };
 		D64D51E62882A70D005E61B1 /* try-statsbomb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "try-statsbomb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D64D51E92882A70D005E61B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D64D51EB2882A70D005E61B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,8 +81,11 @@
 			isa = PBXGroup;
 			children = (
 				D626CD82289B35D50060AA16 /* AnalysisTypeListViewController.swift */,
-				D626CD7E28996CC20060AA16 /* MatchListViewController.swift */,
 				D626CD7C28981AFE0060AA16 /* CompetitionListViewController.swift */,
+				D626CD7E28996CC20060AA16 /* MatchListViewController.swift */,
+				D6FB80D6288847DF00692304 /* PassMapViewController.swift */,
+				D6FB80D42888474900692304 /* PassSonarViewController.swift */,
+				D626CD8A289F26590060AA16 /* PassMapSoloViewController.swift */,
 			);
 			path = vc;
 			sourceTree = "<group>";
@@ -123,8 +128,6 @@
 				D64D51F42882A70E005E61B1 /* LaunchScreen.storyboard */,
 				D64D51EF2882A70D005E61B1 /* Main.storyboard */,
 				D6FB80E2288AE86000692304 /* model */,
-				D6FB80D6288847DF00692304 /* PassMapViewController.swift */,
-				D6FB80D42888474900692304 /* PassSonarViewController.swift */,
 				D6FB80E9288AEFDF00692304 /* PlaygroundViewController.swift */,
 				D6FB80EB288AF08200692304 /* PositionToViewConverter.swift */,
 				D64D51EB2882A70D005E61B1 /* SceneDelegate.swift */,
@@ -249,6 +252,7 @@
 				D6FB80E4288AE87D00692304 /* Lineup.swift in Sources */,
 				D6FB80D92888485600692304 /* Common.swift in Sources */,
 				D6FB80DD288AE5A700692304 /* DataFetcher.swift in Sources */,
+				D626CD8B289F26590060AA16 /* PassMapSoloViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
