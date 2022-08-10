@@ -32,7 +32,7 @@ class PassMapSoloViewController: UIViewController {
         super.viewDidLoad()
 
         setupCloseButtonOnNav()
-        navigationItem.title = "パスマップ（個人）"
+        navigationItem.title = "\(match.homeTeam.name) vs \(match.homeTeam.name) (\(competition.name) \(competition.season))"
 
         pageVC = .init(
             transitionStyle: .scroll,
@@ -107,6 +107,8 @@ fileprivate class PassMapSoloEachViewController: UIViewController {
     var match: Match!
     var isHome: Bool!
 
+    var lineups: [Lineup] = []
+
     var homePlayerAndPassList: [Player: [Event]] = [:]
     var awayPlayerAndPassList: [Player: [Event]] = [:]
 
@@ -132,11 +134,13 @@ fileprivate class PassMapSoloEachViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white //isHome ? .red : .blue
+        view.backgroundColor = .white
 
         // setup player button
+        let buttonConfig = UIImage.SymbolConfiguration(pointSize: 44, weight: .bold, scale: .large)
+        let buttonImage = UIImage(systemName: "person.circle", withConfiguration: buttonConfig)
         playerSelectButton = UIButton(frame: .zero)
-        playerSelectButton.setImage(UIImage(systemName: "person.circle"), for: .normal)
+        playerSelectButton.setImage(buttonImage, for: .normal)
         playerSelectButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(playerSelectButton)
 
@@ -154,7 +158,7 @@ fileprivate class PassMapSoloEachViewController: UIViewController {
         view.addSubview(teamAndPlayerLabel)
 
         teamAndPlayerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        teamAndPlayerLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24).isActive = true
+        teamAndPlayerLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -36).isActive = true
     }
 
     override func viewDidLayoutSubviews() {
@@ -168,6 +172,9 @@ fileprivate class PassMapSoloEachViewController: UIViewController {
             Task {
                 do {
                     let game = try await fetcher.fetch(id: match.id)
+
+                    lineups = game.lineups[isHome ? 0 : 1].lineup
+
                     game.events
                         .filter { $0.team != nil }
                         .filter { $0.pass != nil }
@@ -185,7 +192,6 @@ fileprivate class PassMapSoloEachViewController: UIViewController {
                                 awayPlayerAndPassList[event.player!]?.append(event)
                             }
                         }
-//                    setupPlayerSelectView()
                     configurePlayerSelectionButton(playerSelectButton)
                 } catch {
                     fatalError()
@@ -199,21 +205,52 @@ fileprivate class PassMapSoloEachViewController: UIViewController {
         var actions = [UIMenuElement]()
         let players = isHome ? homePlayerAndPassList : awayPlayerAndPassList
         players.forEach { player, passes in
-            actions.append(
-                UIAction(title: player.name, state: .off, handler: { [weak self] _ in
-                    guard let self = self else { return }
-                    let events = self.isHome ? self.homePlayerAndPassList[player]! : self.awayPlayerAndPassList[player]!
-                    self.passDrawingView.events = events
-                    self.passDrawingView.setNeedsDisplay()
 
-                    self.teamAndPlayerLabel.text = self.isHome ? "Home Team : \(player.name)" : "Away Team : \(player.name)"
-                })
+            // "[MF] name" で表示したい
+            let position = lineups.first { lineup in
+                lineup.playerId == player.id
+            }?.startingPosition?.position ?? "--"
+
+            actions.append(
+                UIAction(
+                    title: "[\(position)] \(convertToNickNameIfExists(player: player))",
+                    state: .off,
+                    handler: { [weak self] _ in
+                        guard let self = self else { return }
+                        let events = self.isHome ? self.homePlayerAndPassList[player]! : self.awayPlayerAndPassList[player]!
+                        self.passDrawingView.events = events
+                        self.passDrawingView.setNeedsDisplay()
+
+                        self.updateTeamAndPlayerLabel(player: player)
+                    }
+                )
             )
         }
 
         target.menu = UIMenu(title: "", options: .displayInline, children: actions)
         target.showsMenuAsPrimaryAction = true
         target.setTitle("", for: .normal)
+    }
+
+    private func updateTeamAndPlayerLabel(player: Player?) {
+        let name: String
+        if let player = player {
+            if isHome {
+                name = "Home Team : \(convertToNickNameIfExists(player: player))"
+            } else {
+                name = "Away Team : \(convertToNickNameIfExists(player: player))"
+            }
+        } else {
+            name = "..."
+        }
+
+        self.teamAndPlayerLabel.text = name
+    }
+
+    private func convertToNickNameIfExists(player: Player) -> String {
+        lineups.first { lineup in
+            lineup.playerId == player.id
+        }?.playerNickname ?? player.name
     }
 
 //
