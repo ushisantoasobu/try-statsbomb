@@ -59,7 +59,8 @@ class MatchListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         // TODO: そろそろUITableViewCellの新しい書き方覚えないと
-        cell.textLabel?.text = list[indexPath.row].homeTeam.name + " vs " + list[indexPath.row].awayTeam.name
+        let match = list[indexPath.row]
+        cell.textLabel?.text = "\(match.homeTeam.name) \(match.homeScore)-\(match.awayScore) \(match.awayTeam.name)"
         return cell
     }
 

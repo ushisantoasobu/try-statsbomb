@@ -14,11 +14,15 @@ struct Match: Decodable {
         case id = "match_id"
         case homeTeam = "home_team"
         case awayTeam = "away_team"
+        case homeScore = "home_score"
+        case awayScore = "away_score"
     }
 
     let id: ID
     let homeTeam: MatchHomeTeam
     let awayTeam: MatchAwayTeam
+    let homeScore: Int
+    let awayScore: Int
 }
 
 struct MatchHomeTeam: Decodable {
