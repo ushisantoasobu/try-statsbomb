@@ -17,6 +17,7 @@ struct Lineup: Decodable {
     let playerId: Player.ID // TODO: ここの整合性、、、どうしよう
     let playerName: String
     let playerNickname: String?
+    let jerseyNumber: Int
     let positions: [LineupPosition]
 
     var isStartingMember: Bool {

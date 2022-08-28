@@ -23,6 +23,7 @@
 		D64D51F32882A70E005E61B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D64D51F22882A70E005E61B1 /* Assets.xcassets */; };
 		D64D51F62882A70E005E61B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D64D51F42882A70E005E61B1 /* LaunchScreen.storyboard */; };
 		D64D51FE2882A773005E61B1 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64D51FD2882A773005E61B1 /* Event.swift */; };
+		D6BE5C9A28B6F4B600D9E153 /* ShotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE5C9928B6F4B600D9E153 /* ShotViewController.swift */; };
 		D6FB80D52888474900692304 /* PassSonarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80D42888474900692304 /* PassSonarViewController.swift */; };
 		D6FB80D7288847DF00692304 /* PassMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80D6288847DF00692304 /* PassMapViewController.swift */; };
 		D6FB80D92888485600692304 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB80D82888485600692304 /* Common.swift */; };
@@ -55,6 +56,7 @@
 		D64D51F52882A70E005E61B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D64D51F72882A70E005E61B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D64D51FD2882A773005E61B1 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		D6BE5C9928B6F4B600D9E153 /* ShotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotViewController.swift; sourceTree = "<group>"; };
 		D6FB80D42888474900692304 /* PassSonarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassSonarViewController.swift; sourceTree = "<group>"; };
 		D6FB80D6288847DF00692304 /* PassMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassMapViewController.swift; sourceTree = "<group>"; };
 		D6FB80D82888485600692304 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				D6FB80D42888474900692304 /* PassSonarViewController.swift */,
 				D626CD8A289F26590060AA16 /* PassMapSoloViewController.swift */,
 				D626CDAE28A716B10060AA16 /* PossessionViewController.swift */,
+				D6BE5C9928B6F4B600D9E153 /* ShotViewController.swift */,
 			);
 			path = vc;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6BE5C9A28B6F4B600D9E153 /* ShotViewController.swift in Sources */,
 				D64D51FE2882A773005E61B1 /* Event.swift in Sources */,
 				D626CD7B289819F90060AA16 /* Competition.swift in Sources */,
 				D6FB80E7288AEE7500692304 /* Game.swift in Sources */,

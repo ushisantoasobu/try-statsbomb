@@ -14,6 +14,7 @@ class AnalysisTypeListViewController: UITableViewController {
         case passMap
         case passMapSolo
         case possession
+        case shot
         case playground
 
         var title: String {
@@ -26,6 +27,8 @@ class AnalysisTypeListViewController: UITableViewController {
                 return "パスマップ個人"
             case .possession:
                 return "ポゼッション"
+            case .shot:
+                return "シュート"
             case .playground:
                 return "Playground"
             }
@@ -135,6 +138,14 @@ class AnalysisTypeListViewController: UITableViewController {
             present(nav, animated: true)
         case .possession:
             let vc = PossessionViewController.instantiate(
+                competition: competition,
+                match: match
+            )
+            let nav = UINavigationController(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true)
+        case .shot:
+            let vc = ShotViewController.instantiate(
                 competition: competition,
                 match: match
             )

@@ -27,9 +27,10 @@ class PossessionViewController: UIViewController {
     var possesionList: [Possession] = []
     var goalList: [Goal] = []
 
-    var possessionStreamView: UIView!
-    var homePossessionRateLabel: UILabel!
-    var awayPossessionRateLabel: UILabel!
+    var possessionStreamView = UIView(frame: .zero)
+    var centerView = UIView(frame: .zero) // 調整用
+    var homePossessionRateLabel = UILabel(frame: .zero)
+    var awayPossessionRateLabel = UILabel(frame: .zero)
 
     struct Possession {
         let start: Double
@@ -49,6 +50,48 @@ class PossessionViewController: UIViewController {
         setupCloseButtonOnNav()
 
         view.backgroundColor = .white
+
+        possessionStreamView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(possessionStreamView)
+
+        centerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(centerView)
+
+        homePossessionRateLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(homePossessionRateLabel)
+
+        awayPossessionRateLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(awayPossessionRateLabel)
+
+        NSLayoutConstraint.activate([
+            possessionStreamView.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: 24
+            ),
+            possessionStreamView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: 24
+            ),
+            possessionStreamView.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -24
+            ),
+            possessionStreamView.bottomAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                constant: -48
+            ),
+            centerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            centerView.topAnchor.constraint(equalTo: view.topAnchor),
+            centerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            homePossessionRateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            homePossessionRateLabel.trailingAnchor.constraint(equalTo: centerView.leadingAnchor),
+            homePossessionRateLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24),
+
+            awayPossessionRateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            awayPossessionRateLabel.leadingAnchor.constraint(equalTo: centerView.trailingAnchor),
+            awayPossessionRateLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24),
+        ])
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -141,24 +184,24 @@ class PossessionViewController: UIViewController {
                         let hoge = UIView(
                             frame: .init(
                                 x: 0,
-                                y: possession.start / total * view.frame.size.height,
-                                width: view.frame.size.width * 0.5,
-                                height: (possession.end - possession.start) / total * view.frame.size.height
+                                y: possession.start / total * possessionStreamView.frame.size.height,
+                                width: possessionStreamView.frame.size.width * 0.5,
+                                height: (possession.end - possession.start) / total * possessionStreamView.frame.size.height
                             )
                         )
                         hoge.backgroundColor = .blue
-                        view.addSubview(hoge)
+                        possessionStreamView.addSubview(hoge)
                     } else {
                         let hoge = UIView(
                             frame: .init(
-                                x: view.frame.size.width * 0.5,
-                                y: possession.start / total * view.frame.size.height,
-                                width: view.frame.size.width * 0.5,
-                                height: (possession.end - possession.start) / total * view.frame.size.height
+                                x: possessionStreamView.frame.size.width * 0.5,
+                                y: possession.start / total * possessionStreamView.frame.size.height,
+                                width: possessionStreamView.frame.size.width * 0.5,
+                                height: (possession.end - possession.start) / total * possessionStreamView.frame.size.height
                             )
                         )
                         hoge.backgroundColor = .red
-                        view.addSubview(hoge)
+                        possessionStreamView.addSubview(hoge)
                     }
                 }
 
@@ -169,6 +212,8 @@ class PossessionViewController: UIViewController {
                         result + (possession.end - possession.start)
                     }
                 print("ホームチームの歩セッション率 \(homeResult / possesionList.last!.end)")
+                homePossessionRateLabel.text = "\(homeResult / possesionList.last!.end)"
+                awayPossessionRateLabel.text = "\(1 - homeResult / possesionList.last!.end)"
 
                 // ゴール表記をする
                 goalList.forEach { goal in
@@ -176,11 +221,11 @@ class PossessionViewController: UIViewController {
                     label.text = goal.player.name
                     label.backgroundColor = .white
                     label.sizeToFit()
-                    view.addSubview(label)
-                    let x = goal.isHome ? view.frame.size.width / 4 : view.frame.size.width * 3 / 4
+                    possessionStreamView.addSubview(label)
+                    let x = goal.isHome ? possessionStreamView.frame.size.width / 4 : possessionStreamView.frame.size.width * 3 / 4
                     label.center = .init(
                         x: x,
-                        y: goal.time / total * view.frame.size.height
+                        y: goal.time / total * possessionStreamView.frame.size.height
                     )
                 }
                 

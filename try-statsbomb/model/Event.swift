@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - event
 
@@ -42,19 +43,6 @@ struct Player: Decodable, Hashable, CustomDebugStringConvertible {
     var debugDescription: String {
         name
     }
-}
-
-// MARK: - shot
-
-struct Shot: Decodable {
-    let outcome: ShotOutcome
-}
-
-struct ShotOutcome: Decodable {
-    typealias ID = Identifier<Self, Int>
-
-    let id: ID
-    let name: String
 }
 
 // MARK: - pass
@@ -99,6 +87,60 @@ struct Team: Decodable {
 }
 
 struct PassOutcome: Decodable {
+    typealias ID = Identifier<Self, Int>
+
+    let id: ID
+    let name: String
+}
+
+// MARK: - shot
+
+struct Shot: Decodable {
+    let statsbombXg: Double
+    let endLocation: [Double]
+    let technique: ShotTechnique
+    let outcome: ShotOutcome
+    let type: ShotType
+    let bodyPart: ShotBodyPart
+    let freezeFrame: [ShotFreezeFrame]?
+}
+
+struct ShotTechnique: Decodable {
+    typealias ID = Identifier<Self, Int>
+
+    let id: ID
+    let name: String
+}
+
+struct ShotOutcome: Decodable {
+    typealias ID = Identifier<Self, Int>
+
+    let id: ID
+    let name: String
+}
+
+struct ShotType: Decodable {
+    typealias ID = Identifier<Self, Int>
+
+    let id: ID
+    let name: String
+}
+
+struct ShotBodyPart: Decodable {
+    typealias ID = Identifier<Self, Int>
+
+    let id: ID
+    let name: String
+}
+
+struct ShotFreezeFrame: Decodable {
+    let location: [Double]
+    let player: Player
+    let position: ShotFreezeFramePosition
+    let teammate: Bool
+}
+
+struct ShotFreezeFramePosition: Decodable {
     typealias ID = Identifier<Self, Int>
 
     let id: ID
